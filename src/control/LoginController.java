@@ -50,18 +50,33 @@ public class LoginController extends HttpServlet {
 			Tienda t = new Tienda();
 			
 			TiendaDao tdao = new TiendaDao();
-			t = tdao.validar(email, clave);
+			
+			/*
 			if (t!=null ) {
 				sesion.setAttribute("tienda", t);
 				request.getRequestDispatcher("tiendaView/servicios.jsp").forward(request, response);
 				
-			}else {
+			}else 
+			if(t==null){
 				
 				request.getRequestDispatcher("tiendaView/login.jsp").forward(request, response);
 				
 				
 			}
-			
+			*/
+			try {
+				 t = tdao.validar(email, clave);
+				if (t != null) {
+					
+						request.getSession().setAttribute("tienda", t);
+						request.getRequestDispatcher("tiendaView/servicios.jsp").forward(request, response);
+					} else {
+						response.sendRedirect(request.getContextPath() + "tiendaView/login.jsp");
+					}
+				}
+			catch (Exception ex) {
+				response.sendRedirect(request.getContextPath() + "tiendaView/login.jsp");
+			}
 			
 			break;
 	}
