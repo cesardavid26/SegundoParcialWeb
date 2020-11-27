@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 	<title>Nuestra tienda virtual</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-	<link rel="stylesheet" type="text/css" href="css/registro.css">
+	<link rel="stylesheet" type="text/css" href="../css/registro.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -21,43 +21,43 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Registro de Tienda</h3>
-              <form>
+              <form action="../TiendaController?action=registro" method=post>
                 <div class="form-label-group">
-                  <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" required autofocus>
+                  <input type="text" id="inputNombre" class="form-control" name="nombre" placeholder="Nombre" required autofocus>
                   <label for="inputNombre">Nombre</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="text" id="inputLema" class="form-control" placeholder="Lema" required autofocus>
+                  <input type="text" id="inputLema" class="form-control" name="lema" placeholder="Lema" required autofocus>
                   <label for="inputLema">Lema</label>
                 </div>
                 <div class="form-label-group">
-                  <textarea id="inputDescripcion" class="form-control" placeholder="Descripcion" required autofocus></textarea>
+                  <textarea id="inputDescripcion" class="form-control" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
                   <label for="inputDescripcion">Descripción</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
                   <label for="inputEmail">Email</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <input type="password" id="inputPassword" class="form-control" name="clave" placeholder="Password" required>
                   <label for="inputPassword">Password</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="input" id="inputPropietario" class="form-control" placeholder="Propietario" required>
+                  <input type="input" id="inputPropietario" class="form-control" name="propietario" placeholder="Propietario" required>
                   <label for="inputPropietario">Propietario</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="input" id="inputFacebook" class="form-control" placeholder="Facebook" required>
+                  <input type="input" id="inputFacebook" class="form-control" name="facebook" placeholder="Facebook" required>
                   <label for="inputFacebook">Facebook</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="input" id="inputWeb" class="form-control" placeholder="Web" required>
+                  <input type="input" id="inputWeb" class="form-control" name="web" placeholder="Web" required>
                   <label for="inputWeb">Web</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="input" id="inputImagen" class="form-control" placeholder="Imagen" required>
+                  <input type="input" id="inputImagen" class="form-control" name="imagen" placeholder="Imagen" required>
                   <label for="inputImagen">Imagen</label>
                 </div>
 
