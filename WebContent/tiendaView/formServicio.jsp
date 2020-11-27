@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="modelo.Tienda"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Nuestra tienda virtual</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="stylesheet" type="text/css" href="../css/registro.css">
 </head>
 <body>
 <div class="container-fluid">
+
+ 
   <div class="row no-gutter">
     <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
     <div class="col-md-8 col-lg-6">
@@ -20,23 +23,24 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Bienvenido</h3>
-              <form action="../LoginController?action=ingresar" method="post">
+              <h3 class="login-heading mb-4">Registro de Servicio</h3>
+              <%
+								Tienda tienda = (Tienda) (request.getSession().getAttribute("tienda"));
+								request.getSession().setAttribute("tienda", tienda);
+								%>
+              <form action="../ServicioController?action=registro" method=post>
+              <input type="hidden" name="idtienda" value="${tienda.getId()}">
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-                  <label for="inputEmail">Email</label>
+                  <input type="text" id="inputNombre" class="form-control" name="nombre" placeholder="Nombre" required autofocus>
+                  <label for="inputNombre">Nombre</label>
                 </div>
-
+                
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" name="clave" placeholder="Password" required>
-                  <label for="inputPassword">Password</label>
+                  <textarea id="inputDescripcion" class="form-control" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
+                  <label for="inputDescripcion">Descripción</label>
                 </div>
-
-                <div class="custom-control custom-checkbox mb-3">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Recordar Password</label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Ingresar</button>
+                
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Registrar</button>
 
               </form>
             </div>

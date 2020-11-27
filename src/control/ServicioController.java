@@ -6,22 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import dao.ServicioDao;
 import dao.TiendaDao;
+import modelo.Servicio;
 import modelo.Tienda;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class ServicioController
  */
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/ServicioController")
+public class ServicioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public ServicioController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,32 +40,27 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession sesion = request.getSession();
-        String action = request.getParameter("action");
+		TiendaDao tDao = new TiendaDao();
+		Tienda t = new Tienda();
 		
-		switch(action){
+		ServicioDao sDao = new ServicioDao();
 		
-		case "ingresar":
-			String email = request.getParameter("email");
-			String clave = request.getParameter("clave");
-			Tienda t = new Tienda();
-			
-			TiendaDao tdao = new TiendaDao();
-			t = tdao.validar(email, clave);
-			if (t!=null ) {
-				sesion.setAttribute("tienda", t);
-				request.getRequestDispatcher("tiendaView/servicios.jsp").forward(request, response);
-				
-			}else {
-				
-				request.getRequestDispatcher("tiendaView/login.jsp").forward(request, response);
-				
-				
-			}
-			
-			
+		String action = request.getParameter("action");
+		switch (action) {
+		case "registro":
+			String nombre = request.getParameter("nombre");
+			String descripcion = request.getParameter("descripcion");
+			Tienda tienda = tDao.find(Integer.parseInt(request.getParameter("idtienda")));
+		
+			Servicio s = new Servicio();
+			s.setNombre(nombre);
+			s.setDescripcion(descripcion);
+			s.setTiendaBean(tienda);
+			sDao.insert(s);
+			request.getSession().setAttribute("tienda", t);
+			request.getRequestDispatcher("tiendaView/servicios.jsp").forward(request, response);
 			break;
+		}
 	}
 
-	}
 }
